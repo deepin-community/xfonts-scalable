@@ -34,6 +34,7 @@ endif
 
 
 build: build-stamp
+build-indep: build-stamp
 build-stamp: $(STAMP_DIR)/prepare
 	dh_testdir
 	autoreconf -vfi
@@ -44,6 +45,9 @@ build-stamp: $(STAMP_DIR)/prepare
 	             CFLAGS="$(CFLAGS)" FCCACHE=/bin/true
 	cd build && $(MAKE)
 	>$@
+
+build-arch:
+# Nothing to do
 
 clean: xsfclean
 	dh_testdir
@@ -64,7 +68,7 @@ clean: xsfclean
 install: build
 	dh_testdir
 	dh_testroot
-	dh_clean -k
+	dh_prep
 	dh_installdirs
 
 	cd build && $(MAKE) DESTDIR=$(CURDIR)/debian/tmp install
@@ -81,7 +85,8 @@ binary-indep: build install
 	dh_testroot
 
 	dh_installdocs
-	dh_install --sourcedir=debian/tmp --fail-missing --exclude=fonts.dir --exclude=fonts.scale
+	dh_install --sourcedir=debian/tmp --exclude=fonts.dir --exclude=fonts.scale
+	dh_missing --fail-missing --exclude=fonts.dir --exclude=fonts.scale
 	dh_installxfonts
 	dh_installchangelogs
 	dh_compress

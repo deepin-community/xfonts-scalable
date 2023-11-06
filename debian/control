@@ -1,16 +1,18 @@
 Source: xfonts-scalable
 Section: fonts
 Priority: optional
-Maintainer: Deepin Developer <deepin-dev@deepin.org>
-Uploaders: Deepin Packages Builder <packages@deepin.org>
+Maintainer: Debian X Strike Force <debian-x@lists.debian.org>
 Build-Depends:
- debhelper (>= 5.0.31),
+ debhelper-compat (= 13),
  xfonts-utils (>= 1:7.6~),
  automake,
  autoconf,
  xutils-dev (>= 1:7.5+1),
  pkg-config,
 Standards-Version: 3.8.3
+Vcs-Git: https://salsa.debian.org/xorg-team/font/xfonts-scalable.git
+Vcs-Browser: https://salsa.debian.org/xorg-team/font/xfonts-scalable
+Rules-Requires-Root: no
 
 Package: xfonts-scalable
 Architecture: all
